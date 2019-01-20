@@ -40,6 +40,7 @@
     "url": "git://github.com/gbimalahayati-dev/malahayati-image-cache.git"
   },
   "dependencies": {
+    "lodash": "^4.17.11",
     "rn-fetch-blob": "^0.10.15"
   }
 }
