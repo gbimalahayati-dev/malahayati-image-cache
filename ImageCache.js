@@ -22,7 +22,8 @@ export default class ImageCache {
         } else {
             const localFileUri = await FileSystem.downloadFile(url, hashedUrl, options.headers)
             if (localFileUri == null) {
-                Cacher.clearCache()
+                await Cacher.clearCache()
+                await FileSystem.clearAllFile()
                 return Promise.reject(this.DOWNLOAD_FAIL)
             } else {
                 await Cacher.addCache(hashedUrl, localFileUri, options.ttl)

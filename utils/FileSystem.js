@@ -18,6 +18,10 @@ export default class FileSystem {
         return fs.unlink(uri);
     }
 
+    static clearAllFile() {
+        return fs.unlink(this.CACHE_DIR)
+    }
+
     // TODO: ERROR storage penuh
     static async downloadFile(url, hashedFileName, header) {
         const tmpFile = this.CACHE_DIR + hashedFileName + ".tmp"

@@ -41,7 +41,6 @@ export default class Cacher {
             if (!data.hasOwnProperty(key)) continue
 
             if (data[key].ttl < currentEpoch) {
-                console.log("Clearing cache: " + key)
                 await FileSystem.deleteFile(data[key].uri)
                 delete data[key]
             }
@@ -62,6 +61,12 @@ export default class Cacher {
     }
 
     static async clearCache() {
+        const data = _read(this.COLLECTIONS)
+        for (let key in data) {
+            if(!data.hasOwnProperty(key)) continue
+            
+            await FileSystem.deleteFile(data[key].uri)
+        }
         await AS.removeItem(this.COLLECTIONS)
     }
 }
